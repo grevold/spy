@@ -7,7 +7,7 @@ export function useRedirectToStartScreenAfterTimeout() {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       dispatch(gameActions.changeScreen(EScreen.Start));
-    }, 2000);
+    }, 3000);
     return () => {
       window.clearTimeout(timer);
     };

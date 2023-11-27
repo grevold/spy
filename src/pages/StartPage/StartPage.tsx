@@ -2,6 +2,8 @@ import { ChangeEventHandler } from "react";
 import { gameActions } from "../../store/gameConfigSlice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
+import s from "./StartPage.module.css";
+
 export function StartPage() {
   const dispatch = useAppDispatch();
   const playersNumber = useAppSelector(
@@ -15,15 +17,26 @@ export function StartPage() {
     dispatch(gameActions.changePlayersNumber(newPlayersNumber));
   };
   return (
-    <div>
-      <div>
-        <select onChange={handlePlayersNumberChange} value={`${playersNumber}`}>
+    <div className={s.root}>
+      <img
+        className={s.illustration}
+        src={`${process.env.PUBLIC_URL}/images/main.png`}
+      />
+      <div className={s.numberPlayers}>
+        <span className={s.numberPlayersHeader}>Количество игроков</span>
+        <select
+          className={s.selectNumberPlayers}
+          onChange={handlePlayersNumberChange}
+          value={`${playersNumber}`}
+        >
           <option value="4">4</option>
           <option value="5">5</option>
           <option value="6">6</option>
         </select>
       </div>
-      <button onClick={clickStart}>Начать</button>
+      <button className={s.buttonStart} onClick={clickStart}>
+        Начать
+      </button>
     </div>
   );
 }

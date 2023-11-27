@@ -3,6 +3,8 @@ import { useAppSelector } from "../../store/store";
 import { ModalWindowSuccess } from "./components/ModalWindowSuccess/ModalWindowSuccess";
 import { ModalWindowError } from "./components/ModalWindowError/ModalWindowError";
 
+import s from "./SpyTestPage.module.css";
+
 enum EModalWindow {
   Success = "Success",
   Error = "Error",
@@ -42,15 +44,25 @@ export function SpyTestPage() {
   }
 
   return (
-    <div>
-      <select onChange={handleSelect} value={"не выбрано"}>
-        {answerOptionsForSpyTest.map((answer) => (
-          <option key={answer} value={answer}>
-            {answer}
-          </option>
-        ))}
+    <div className={s.root}>
+      <select onChange={handleSelect} className={s.answers_select}>
+        {answerOptionsForSpyTest.map((answer, index) =>
+          index === 0 ? (
+            <option key={answer} disabled selected>
+              {answer}
+            </option>
+          ) : (
+            <option key={answer} value={answer}>
+              {answer}
+            </option>
+          )
+        )}
       </select>
-      <button disabled={!state.answer} onClick={handleSubmit}>
+      <button
+        disabled={!state.answer}
+        onClick={handleSubmit}
+        className={s.button_answer}
+      >
         Применить
       </button>
     </div>
