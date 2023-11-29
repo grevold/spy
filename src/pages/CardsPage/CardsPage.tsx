@@ -52,7 +52,16 @@ export function CardsPage() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <div className={s.cardBack} onClick={handleClick}></div>
+          <div className={s.cardBack} onClick={handleClick}>
+            <img
+              className={s.back_card_up}
+              src={`${process.env.PUBLIC_URL}/images/card.png`}
+            />
+            <img
+              className={s.back_card_down}
+              src={`${process.env.PUBLIC_URL}/images/card.png`}
+            />
+          </div>
         </div>
       </div>
     );
@@ -62,7 +71,11 @@ export function CardsPage() {
       <div className={s.root}>
         <div className={s.container}>
           <div className={s.cardSpy} onClick={handleClick}>
-            Вы шпион
+            <img
+              className={s.image_spy}
+              src={`${process.env.PUBLIC_URL}/images/you_spy.png`}
+            />
+            <h1 className={s.message_spy}>Вы шпион</h1>
           </div>
         </div>
       </div>
@@ -72,11 +85,10 @@ export function CardsPage() {
     <div className={s.root}>
       <div className={s.container}>
         <div className={s.cardRole} onClick={handleClick}>
-          <div className={s.role}>
-            <h1 className={s.role_header}>{store.game.title}</h1>
-            <span className={s.role_header}>
-              {" "}
-              {store.game.roles[state.playerIndex % store.game.roles.length]}
+          <div className={s.location_container}>
+            <h1 className={s.location}>{store.game.title}</h1>
+            <span className={s.role}>
+              Вы {store.game.roles[state.playerIndex % store.game.roles.length]}
             </span>
           </div>
         </div>

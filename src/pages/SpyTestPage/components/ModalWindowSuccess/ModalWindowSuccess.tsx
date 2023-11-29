@@ -10,7 +10,7 @@ export function ModalWindowSuccess() {
         className={s.image}
         src={`${process.env.PUBLIC_URL}/images/right_answer.png`}
       />
-      <h1 className={s.message}>Правильный ответ</h1>
+      <h1 className={s.message}>Вы их переиграли</h1>
     </div>
   );
 }

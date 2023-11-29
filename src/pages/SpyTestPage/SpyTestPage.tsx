@@ -45,6 +45,7 @@ export function SpyTestPage() {
 
   return (
     <div className={s.root}>
+      <h1>Тест на шпиона</h1>
       <select onChange={handleSelect} className={s.answers_select}>
         {answerOptionsForSpyTest.map((answer, index) =>
           index === 0 ? (
