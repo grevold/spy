@@ -11,7 +11,7 @@ export function ModalWindowError() {
         className={s.image}
         src={`${process.env.PUBLIC_URL}/images/catch_spy.png`}
       />
-      <h1 className={s.message}>Вы пойманы за руку как шпион</h1>
+      <h1 className={s.message}>Шпион пойман за руку!</h1>
     </div>
   );
 }

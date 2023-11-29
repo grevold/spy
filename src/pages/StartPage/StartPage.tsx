@@ -3,6 +3,7 @@ import { gameActions } from "../../store/gameConfigSlice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
 import s from "./StartPage.module.css";
+import { Logo } from "../../icons/Logo";
 
 export function StartPage() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,13 @@ export function StartPage() {
   };
   return (
     <div className={s.root}>
+      <div className={s.header_block}>
+        <Logo />
+        <span className={s.sub_title}>
+          Интеллектуальная психологическая игра для компании
+        </span>
+      </div>
+
       <img
         className={s.illustration}
         src={`${process.env.PUBLIC_URL}/images/main.png`}
