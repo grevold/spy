@@ -1,16 +1,27 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../store/store";
+import { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import { EScreen, gameActions } from "../../store/gameConfigSlice";
 
 import s from "./TimerPage.module.css";
 
 export function TimerPage() {
-  const [state, setState] = useState({ minutes: 1, seconds: 59 });
+  const storeTime = useAppSelector((store) => store.gameReducer.time);
+  const [state, setState] = useState({
+    minutes: storeTime / 30000,
+    seconds: 0,
+  });
   const dispatch = useAppDispatch();
+  const timer = useRef<number>();
+  const call = new Audio(`${process.env.PUBLIC_URL}/call.mp3`);
+
   useEffect(() => {
-    const timer = window.setTimeout(() => {
+    timer.current = window.setTimeout(() => {
       dispatch(gameActions.changeScreen(EScreen.SpyTest));
-    }, 1000);
+    }, storeTime);
+    setTimeout(() => {
+      call.play();
+    }, storeTime - 9000);
+
     const timerId = window.setInterval(
       () =>
         setState(function (prevState) {
@@ -36,9 +47,14 @@ export function TimerPage() {
       1000
     );
     return () => {
-      window.clearTimeout(timer);
+      window.clearTimeout(timer.current);
     };
   }, [dispatch]);
+
+  const goToTest = () => {
+    window.clearTimeout(timer.current);
+    dispatch(gameActions.changeScreen(EScreen.SpyTest));
+  };
   return (
     <div className={s.root}>
       <div className={s.dial}>
@@ -50,6 +66,9 @@ export function TimerPage() {
           {state.seconds < 10 ? "0" + state.seconds : state.seconds}
         </div>
       </div>
+      <button onClick={goToTest} className={s.goToTestButton}>
+        Перейти к тесту
+      </button>
     </div>
   );
 }
