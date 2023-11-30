@@ -54,9 +54,9 @@ export function StartPage() {
           onChange={handleTimeChange}
           value={`${storeTime}`}
         >
-          <option value="60000">2 мин</option>
-          <option value="90000">3 мин</option>
-          <option value="120000">4 мин</option>
+          <option value="120000">2 мин</option>
+          <option value="180000">3 мин</option>
+          <option value="240000">4 мин</option>
         </select>
       </div>
       <button className={s.buttonStart} onClick={clickStart}>

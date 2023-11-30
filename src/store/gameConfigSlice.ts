@@ -25,7 +25,7 @@ export interface IStore {
 const initialState: IStore = {
   screen: EScreen.Start,
   playersNumber: 4,
-  time: 60000,
+  time: 120000,
   game: {
     title: "",
     roles: [],
