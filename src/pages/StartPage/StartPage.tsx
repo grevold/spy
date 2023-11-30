@@ -10,12 +10,17 @@ export function StartPage() {
   const playersNumber = useAppSelector(
     (store) => store.gameReducer.playersNumber
   );
+  const storeTime = useAppSelector((store) => store.gameReducer.time);
   const clickStart = () => dispatch(gameActions.startGame());
   const handlePlayersNumberChange: ChangeEventHandler<HTMLSelectElement> = (
     event
   ) => {
     const newPlayersNumber = parseInt(event.target.value);
     dispatch(gameActions.changePlayersNumber(newPlayersNumber));
+  };
+  const handleTimeChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const newTime = parseInt(event.target.value);
+    dispatch(gameActions.changeTime(newTime));
   };
   return (
     <div className={s.root}>
@@ -40,6 +45,18 @@ export function StartPage() {
           <option value="4">4</option>
           <option value="5">5</option>
           <option value="6">6</option>
+        </select>
+      </div>
+      <div className={s.time}>
+        <span className={s.timeHeader}>Время игры</span>
+        <select
+          className={s.selectTime}
+          onChange={handleTimeChange}
+          value={`${storeTime}`}
+        >
+          <option value="60000">2 мин</option>
+          <option value="90000">3 мин</option>
+          <option value="120000">4 мин</option>
         </select>
       </div>
       <button className={s.buttonStart} onClick={clickStart}>

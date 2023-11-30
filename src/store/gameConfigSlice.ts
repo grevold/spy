@@ -18,12 +18,14 @@ export interface IGame {
 export interface IStore {
   screen: EScreen;
   playersNumber: number;
+  time: number;
   game: IGame;
 }
 
 const initialState: IStore = {
   screen: EScreen.Start,
   playersNumber: 4,
+  time: 60000,
   game: {
     title: "",
     roles: [],
@@ -39,6 +41,12 @@ const slice = createSlice({
       return {
         ...store,
         playersNumber: action.payload,
+      };
+    },
+    changeTime(store, action: PayloadAction<number>) {
+      return {
+        ...store,
+        time: action.payload,
       };
     },
     startGame(store) {
