@@ -7,7 +7,7 @@ import s from "./TimerPage.module.css";
 export function TimerPage() {
   const storeTime = useAppSelector((store) => store.gameReducer.time);
   const [state, setState] = useState({
-    minutes: storeTime / 30000,
+    minutes: storeTime / 60000,
     seconds: 0,
   });
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ export function TimerPage() {
     }, storeTime);
     setTimeout(() => {
       call.play();
-    }, storeTime - 9000);
+    }, storeTime - 10000);
 
     const timerId = window.setInterval(
       () =>
@@ -48,6 +48,7 @@ export function TimerPage() {
     );
     return () => {
       window.clearTimeout(timer.current);
+      window.clearTimeout(timerId);
     };
   }, [dispatch]);
 
