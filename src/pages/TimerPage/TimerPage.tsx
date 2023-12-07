@@ -12,13 +12,14 @@ export function TimerPage() {
   });
   const dispatch = useAppDispatch();
   const timer = useRef<number>();
+  // const callTimer = useRef<number>();
   const call = new Audio(`${process.env.PUBLIC_URL}/call.mp3`);
 
   useEffect(() => {
     timer.current = window.setTimeout(() => {
       dispatch(gameActions.changeScreen(EScreen.SpyTest));
     }, storeTime);
-    setTimeout(() => {
+    const callTimer = window.setTimeout(() => {
       call.play();
     }, storeTime - 10000);
 
@@ -49,6 +50,7 @@ export function TimerPage() {
     return () => {
       window.clearTimeout(timer.current);
       window.clearTimeout(timerId);
+      window.clearTimeout(callTimer);
     };
   }, [dispatch]);
 
