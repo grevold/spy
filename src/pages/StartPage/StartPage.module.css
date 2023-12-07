@@ -21,6 +21,7 @@
 }
 .illustration {
   width: 100%;
+  max-width: 200px;
 }
 .numberPlayers {
   display: flex;
@@ -28,7 +29,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 30px;
+  /* margin-bottom: 10px; */
   background-color: white;
 }
 .numberPlayersHeader {
